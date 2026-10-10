@@ -1,11 +1,49 @@
+:root
+{
+    --primary: #42D9C8;
+    --dark: #101010;
+    --brutal: 3px 3px 0px var(--dark);
+}
+
+@font-face
+{
+    font-family: primary;
+    src: url('/fonts/Outfit.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+*:focus{
+    outline: none;
+}
 /* Task 1: Style the body */
 body {
-    /* insert code here */
+    font-size: 16px;
+    font-family: primary, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+    min-height: 100vh;
+    position: relative;
+    padding: 20px 0px;
 }
 
 /* Task 2: Create a pseudo-element for the background and blur */
 body::before {
-    /* insert code here */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #f8fdf6;
 }
 
 /* Task 3: Style the content area */
@@ -15,5 +53,117 @@ body::before {
 
 /* Task 4: Add styles for headings, paragraphs, and buttons */
 h1, h2, .lead, .btn-primary {
-    /* insert code here */
+    padding: 0;
+    border: none;
+    outline: none;
+}
+
+.header
+{
+   background-color: white;
+   display: flex;
+   gap: 10px;
+   max-width: 100%;
+   padding: 20px;
+   border-radius: 10px;
+   border: 2px solid #101010;
+   box-shadow: 3px 3px 0px #101010;
+   margin-bottom: 20px;
+}
+
+.header .icons {
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+}
+
+.header .icon 
+{
+    border: 1px solid #101010;
+    font-size: 16px;
+    padding: 4px;
+    height: fit-content;
+    border-radius: 6px;
+    color: var(--dark);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+
+.hero 
+{
+    padding: 20px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero-content 
+{
+    width: 50%;
+}
+
+.hero-content .label
+{
+    background-color: var(--primary);
+    width: fit-content;
+    border: 2px solid var(--dark);
+    box-shadow: var(--brutal);
+    padding: 4px 8px;
+    position: relative;
+    font-weight: bold;
+    font-size: 20px;
+    transform: rotate(-3deg);
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    margin: 40px 0px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.hero-buttons button {
+    background-color: var(--dark);
+    color: white;
+    padding: 4px 12px;
+}
+
+.img-area{
+    position: relative;
+}
+
+.img-area .img 
+{
+    width: 300px;
+    height: 300px;
+    border: 2px solid var(--dark);
+    box-shadow: var(--brutal);
+    position: relative;
+    z-index: 10;
+    border-radius: 10px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.img-area .backdrop
+{
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 10px;
+    top: -10px;
+    background-color: var(--primary);
+    border: 2px solid var(--dark);
+    border-radius: 10px;
 }
