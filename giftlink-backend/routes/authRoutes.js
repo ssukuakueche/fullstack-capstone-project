@@ -1,10 +1,10 @@
-import connectToDatabase from '../models/db';
 
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const pino = require('pino');
 const { Router } = require('express');
 const bcryptjs = require('bcryptjs');
+const connectToDatabase = require("../models/db");
 
 dotenv.config();
 
@@ -48,9 +48,9 @@ router.post('/register', async (req, res)=>{
     res.json({
         accessToken: token,
         user: {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email
+            firstName: firstName,
+            lastName: lastName,
+            email: email
         }
     })
 
@@ -74,7 +74,7 @@ router.post('/login', async (req, res)=>{
     const salt = await bcryptjs.genSalt(10);
     const hash = await bcryptjs.hash(password, salt);
 
-    if (hash == user.password)
+    if (hash != user.password)
     {
         res.status(401).json({
             message: 'Invalid password'

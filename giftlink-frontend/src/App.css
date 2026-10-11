@@ -171,6 +171,7 @@ body,
 
 /* Change the background color of the navbar */
 .navbar {
+  width: 100%;
   background-color: white;
   justify-content: start;
   align-items: center;
@@ -206,10 +207,16 @@ body,
   color: var(--primary);
 }
 
-/* Add a hover effect to nav links */
-.nav-item .nav-link:hover {
-  color: #004085; /* A darker shade for hover state */
-  text-decoration: none; /* Optional: Removes the underline on hover */
+.navbar-nv
+{
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: auto;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Highlight the active nav link */
@@ -222,34 +229,23 @@ body,
 
 /* Style for login button */
 .nav-link.login-btn {
-  background-color: #28a745; /* A green color for login */
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s ease-in-out;
+  background-color: var(--primary);
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 6px 10px;
+  box-shadow: var(--brutal);
 }
 
-.nav-link.login-btn:hover,
-.nav-link.login-btn:focus {
-  background-color: #218838; /* A darker green on hover/focus for login */
-  color: white;
-  text-decoration: none;
-}
 
 /* Style for logout button */
 .nav-link.logout-btn {
-  background-color: #dc3545; /* A red color for logout */
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.nav-link.logout-btn:hover,
-.nav-link.logout-btn:focus {
-  background-color: #c82333; /* A darker red on hover/focus for logout */
-  color: white;
-  text-decoration: none;
+  background-color: #dc3545;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 6px 10px;
+  box-shadow: var(--brutal);
 }
 
 
