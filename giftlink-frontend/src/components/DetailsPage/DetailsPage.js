@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './DetailsPage.css';
+import axios from 'axios';
+import { urlConfig } from '../../config';
 
 function DetailsPage() {
     const navigate = useNavigate();
@@ -9,22 +11,21 @@ function DetailsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    console.log(productId);
+
     useEffect(() => {
         const authenticationToken = sessionStorage.getItem('auth-token');
         if (!authenticationToken) {
             // Task 1: Check for authentication and redirect
-            //{{insert code here}}
+            navigate('/app/login');
         }
 
         // get the gift to be rendered on the details page
         const fetchGift = async () => {
             try {
                 // Task 2: Fetch gift details
-                const response = null;//{{insert code here}}
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
+                const response = await axios.get(`${urlConfig.backendUrl}/api/gifts/${productId}`);
+                const data = response.data;
                 setGift(data);
             } catch (error) {
                 setError(error.message);
@@ -36,15 +37,21 @@ function DetailsPage() {
         fetchGift();
 
         // Task 3: Scroll to top on component mount
-        //{{ insert code here }}
+        window.scrollTo(0, 0);
 
     }, [productId]);
 
 
     const handleBackClick = () => {
         // Task 4: Handle back click
-        //{{ insert code here }}
+        navigate(-1);
     };
+
+       const formatDate = (timestamp) => {
+       const date = new Date(timestamp * 1000);
+        return date.toLocaleDateString('default');
+      };
+
 
     //The comments have been hardcoded for this project.
     const comments = [
@@ -79,40 +86,39 @@ function DetailsPage() {
         <div className="container mt-5">
             <button className="btn btn-secondary mb-3" onClick={handleBackClick}>Back</button>
             <div className="card product-details-card">
-                <div className="card-header text-white">
+                <div className="card-header">
                     <h2 className="details-title">{gift.name}</h2>
                 </div>
-                <div className="card-body">
+                <div className="card-details">
                     <div className="image-placeholder-large">
                         {gift.image ? (
-			// Task 5: Display gift image
-			/*insert code here*/ <></>
+                            <img src={gift.image} className='product-image-large' alt={gift.name} />
                         ) : (
                             <div className="no-image-available-large">No Image Available</div>
                         )}
                     </div>
-                    // Task 6: Display gift details
-                    	<p><strong>Category:</strong> 
-				{/* insert code here  */}
-			</p>
-                    	<p><strong>Condition:</strong> 
-				{/* insert code here  */}
-                    	</p>
-                    	<p><strong>Date Added:</strong> 
-				{/* insert code here  */}
+                    <div>
+                        <p><strong>Category: </strong>
+                            {gift.category}
                         </p>
-                    	<p><strong>Age (Years):</strong> 
-				{/* insert code here  */}
-                    	</p>
-                    	<p><strong>Description:</strong> 
-				{/* insert code here  */}
-                    	</p>
+                        <p><strong>Condition: </strong>
+                            {gift.condition}
+                        </p>
+                        <p><strong>Date Added: </strong>
+                            {formatDate(gift.date_added)}
+                        </p>
+                        <p><strong>Age (Years): </strong>
+                            {gift.age_days}
+                        </p>
+                        <p><strong>Description: </strong>
+                            {gift.description}
+                        </p>
+                    </div>
                 </div>
             </div>
             <div className="comments-section mt-4">
                 <h3 className="mb-3">Comments</h3>
-				// Task 7: Render comments section by using the map function to go through all the comments
-				{/*{{ insert code here }} => (
+                {comments.map((comment, index) => (
                     <div key={index} className="card mb-3">
                         <div className="card-body">
                             <p className="comment-author"><strong>{comment.author}:</strong></p>
@@ -120,7 +126,6 @@ function DetailsPage() {
                         </div>
                     </div>
                 ))}
-                */}
             </div>
         </div >
     );
