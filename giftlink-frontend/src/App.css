@@ -1,36 +1,69 @@
+:root
+{
+    --primary: #00d491;
+    --dark: #101010;
+    --brutal: 3px 3px 0px var(--dark);
+    --brutal-anim: 6px 6px 0px var(--dark);
+}
+
 
 html {
   overflow-y: scroll;
 }
 /* Primary color for headers and important buttons */
-.custom-card-title,
-.btn-primary {
-  background-color: #0056b3; /* Strong, confident blue */
-  color: white; /* For text on primary color background */
-}
-
 /* Secondary color for hover states and highlights */
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #009688; /* Teal */
+  opacity: 0.9; /* Teal */
+  background-color: var(--primary);
+  color: black;
 }
 
 /* General background color */
 body,
 .page-background {
-  background-color: #f4f4f4; /* Light grey */
   margin-right: calc(100vw - 100%);
 }
 
 /* Background color for cards */
 .card {
   background-color: #ffffff; /* White */
+  border: 2px solid var(--dark);
+  box-shadow: var(--brutal);
+  transition: .5s all;
+}
+.card:hover{
+  transition: .5s all;
+  box-shadow: var(--brutal-anim);
 }
 
 /* Text color */
 .card-title,
 .card-text {
   color: #333333; /* Darker grey */
+}
+
+
+.card-title{
+  font-weight: bold;
+}
+
+.card-date {
+  font-size: 12px;
+}
+
+.card-text{
+    font-size: 14px;
+}
+
+.card-image
+{
+  aspect-ratio: 1.35;
+}
+
+.card-badge {
+  background-color: #0056b3;
+  width: fit-content;
 }
 
 /* Subtle accent color */
@@ -55,7 +88,6 @@ body,
 .product-card {
   margin: 1rem 0; /* Adds space above and below each card */
   border-radius: 10px; /* Rounded corners for card */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   overflow: hidden; /* Ensures nothing spills out of the card's rounded corners */
 }
 
@@ -113,33 +145,65 @@ body,
   display: block; /* Disables inline-block default of buttons */
   width: 100%; /* Full width */
   box-sizing: border-box; /* Includes padding and border in the width */
+  background-color: var(--primary);
+  color: black;
+  border: none;
+}
+
+.list-group {
+  border-radius: 0px;
+  width: fit-content;
+  font-size: 10px;
+  border-radius: 20px;
+  padding: 2px 8px;
+  margin-bottom: 10px;
+  color: white;
 }
 /* Highlight condition and age with color */
 .list-group-item-success {
-  color: #28a745; /* Green text color for new items */
+  background-color: #28a745; /* Green text color for new items */
 }
 
 .list-group-item-warning {
-  color: #ffc107; /* Yellow text color for older items */
+  background-color: #ffc107; /* Yellow text color for older items */
 }
 
-/* Customize the navbar brand and links */
-.navbar-brand, .nav-link {
-  font-size: 1.2rem; /* Increase font size */
-  font-weight: 500; /* Medium weight for better visibility */
-}
-
-/* Increase the font size and weight of nav-item */
-.nav-item .nav-link {
-  font-size: 1.1rem; /* Larger font size for nav links */
-  font-weight: bold; /* Bold font weight for emphasis */
-  color: #0056b3; /* Choose a color that stands out */
-}
 
 /* Change the background color of the navbar */
 .navbar {
-  background-color: #f8f9fa; /* A light color for contrast with the text */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* A subtle shadow for depth */
+  background-color: white;
+  justify-content: start;
+  align-items: center;
+  color: var(--dark);
+}
+
+
+.navbar .logo {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navbar  .logo span {
+    color: var(--primary);
+}
+
+.navbar-items {
+  display: flex;
+  gap: 10px;
+  margin: 0px;
+  padding: 0px;
+  margin-left: 20px;
+}
+
+.navbar-items a {
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-items a:hover{
+  color: var(--primary);
 }
 
 /* Add a hover effect to nav links */

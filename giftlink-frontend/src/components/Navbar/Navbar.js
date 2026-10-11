@@ -2,14 +2,14 @@ import React from 'react';
 
 export default function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="/">GiftLink</a>
-
-            <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                    {/* Task 1: Add links to Home and Gifts below*/}
-                </ul>
-            </div>
+        <nav className="container navbar">
+            <a className='logo' href="/home.html">
+                Gift<span>Link</span>
+            </a>
+            <ul className="navbar-items">
+                <a href='/home.html'>Home</a>
+                <a href='/app'>Gifts</a>
+            </ul>
         </nav>
     );
 }

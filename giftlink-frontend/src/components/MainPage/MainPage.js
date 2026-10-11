@@ -1,25 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {urlConfig} from '../../config';
+import axios from 'axios';
+
 
 function MainPage() {
     const [gifts, setGifts] = useState([]);
     const navigate = useNavigate();
 
+
+    async function fetchGifts ()
+    {
+        try {
+            const response =  await axios.get(`${urlConfig.backendUrl}/api/gifts`);
+            setGifts(response.data);
+        }
+        catch(e)
+        {
+            console.log(`HTTP Error: ${e}`);
+        }
+    }
     useEffect(() => {
         // Task 1: Write async fetch operation
-        // Write your code below this line
+        fetchGifts();
     }, []);
 
     // Task 2: Navigate to details page
     const goToDetailsPage = (productId) => {
-        // Write your code below this line
+        navigate(`/app/products/${productId}`)
 
       };
 
     // Task 3: Format timestamp
     const formatDate = (timestamp) => {
-        // Write your code below this line
+       const date = new Date(timestamp * 1000);
+        return date.toLocaleDateString('default', { month: 'long', day: 'numeric', year: 'numeric' });
       };
 
     const getConditionClass = (condition) => {
@@ -34,19 +49,19 @@ function MainPage() {
                         <div className="card product-card">
 
                             {/* // Task 4: Display gift image or placeholder */}
-                            {/* // Write your code below this line */}
+                            <img src={gift.image} className='card-image' alt={gift.name}/>
 
                             <div className="card-body">
 
                                 {/* // Task 5: Display gift image or placeholder */}
-                                {/* // Write your code below this line */}
+                                <p className='card-title'>{gift.name}</p>
 
-                                <p className={`card-text ${getConditionClass(gift.condition)}`}>
+                                <p className={`card-text list-group ${getConditionClass(gift.condition)}`}>
                                 {gift.condition}
                                 </p>
 
                                 {/* // Task 6: Display gift image or placeholder */}
-                                {/* // Write your code below this line */}
+                                <p className='card-date'>{formatDate(gift.date_added)}</p>
                                 
 
                                 <button onClick={() => goToDetailsPage(gift.id)} className="btn btn-primary">
