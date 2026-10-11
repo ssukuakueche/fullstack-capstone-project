@@ -1,3 +1,12 @@
+:root
+{
+    --primary: #00d491;
+    --dark: #101010;
+    --brutal: 3px 3px 0px var(--dark);
+    --brutal-anim: 6px 6px 0px var(--dark);
+}
+
+
 /* Task 1: Style the search input field */
 .search-input {
     /* Insert specific CSS properties here */
