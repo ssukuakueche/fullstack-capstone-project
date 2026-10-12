@@ -18,7 +18,11 @@ function LoginPage() {
 
   async function handleLogin() {
     try {
-      const response = await axios.post(`${urlConfig.backendUrl}/api/auth/login`, user);
+      const response = await axios.post(`${urlConfig.backendUrl}/api/auth/login`, user, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       const data = await response.data;
 
 
