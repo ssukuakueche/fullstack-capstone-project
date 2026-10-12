@@ -63,7 +63,7 @@ router.post('/login', async (req, res)=>{
     const db = await connectToDatabase();
     const collection = db.collection('users');
 
-    const user = collection.findOne({ email });
+    const user = await  collection.findOne({ email });
     if (!user)
     {
         res.status(404).json({
@@ -72,10 +72,7 @@ router.post('/login', async (req, res)=>{
         return ;
     }
 
-    const salt = await bcryptjs.genSalt(10);
-    const hash = await bcryptjs.hash(password, salt);
-
-    if (hash != user.password)
+    if (!(await bcryptjs.compare(password, user.password)))
     {
         res.status(401).json({
             message: 'Invalid password'

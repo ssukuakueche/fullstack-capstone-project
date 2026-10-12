@@ -35,7 +35,7 @@ function RegisterPage() {
         }
         catch(e)
         {
-            setShowerr(e.response.data.message ?? 'Houve um erro')
+            setShowerr(e.response.data.message ?? 'Try again')
             console.log(e);
         }
     }
