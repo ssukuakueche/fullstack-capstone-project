@@ -43,6 +43,7 @@ router.post('/register', async (req, res)=>{
 
     const token = jwt.sign({
         email: user.email, 
+        id: user._id
     }, JWT_SECRET);
 
     res.json({
@@ -82,7 +83,8 @@ router.post('/login', async (req, res)=>{
         return ;
     }
     const token = jwt.sign({
-        email: user.email
+        email: user.email,
+        id: user._id
     }, JWT_SECRET);
 
     res.json({
