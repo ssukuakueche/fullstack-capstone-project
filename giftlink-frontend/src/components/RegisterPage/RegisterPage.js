@@ -26,9 +26,9 @@ function RegisterPage() {
             const data = response.data;
 
             sessionStorage.setItem('auth-token', data.accessToken);
-            sessionStorage.setItem('name', data.user.firstName);
+            sessionStorage.setItem('name', data.user.name);
             sessionStorage.setItem('email', data.user.email);
-            setUserName(user.firstName + ' ' + user.lastName);
+            setUserName(data.user.name);
             setIsLoggedIn(true);
             navigate('/app');
             

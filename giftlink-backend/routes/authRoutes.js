@@ -31,10 +31,10 @@ router.post('/register', async (req, res) => {
 
     const salt = await bcryptjs.genSalt(10);
     const hash = await bcryptjs.hash(password, salt);
+    const name = `${firstName} ${lastName}`;
 
     const user = await collection.insertOne({
-        firstName,
-        lastName,
+        name,
         email,
         password: hash,
         createAt: new Date()
@@ -43,16 +43,15 @@ router.post('/register', async (req, res) => {
     logger.info('User registered successfully');
 
     const token = jwt.sign({
-        email: user.email,
+        email,
         id: user._id
     }, JWT_SECRET);
 
     res.json({
         accessToken: token,
         user: {
-            firstName: firstName,
-            lastName: lastName,
-            email: email
+            name,
+            email
         }
     })
 
@@ -86,8 +85,7 @@ router.post('/login', async (req, res) => {
     res.json({
         accessToken: token,
         user: {
-            firstName: user.firstName,
-            lastName: user.lastName,
+            name: user.name,
             email: user.email
         }
     })
@@ -115,10 +113,9 @@ router.put('/update', async (req, res) => {
         res.status(401).json({ message: 'User not found' });
         return;
     }
-    const {firstName, lastName} = req.body;
+    const { name } = req.body;
     user.createAt = new Date();
-    user.firstName = firstName;
-    user.lastName = lastName;
+    user.name = name;
     const updatedUser = await collection.findOneAndUpdate(
         { email },
         { $set: user },
@@ -133,8 +130,7 @@ router.put('/update', async (req, res) => {
     res.json({
         accessToken: token,
         user: {
-            firstName: updatedUser.firstName,
-            lastName: updatedUser.lastName,
+            name: updatedUser.name,
             email: updatedUser.email
         }
     })
