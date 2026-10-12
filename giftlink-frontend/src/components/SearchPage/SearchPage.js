@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { urlConfig } from '../../config';
@@ -50,9 +50,8 @@ function SearchPage() {
     }
 
     const navigate = useNavigate();
-
     const goToDetailsPage = (productId) => {
-        // Task 6. Enable navigation to the details page of a selected gift.
+        navigate(`/app/gifts/${productId}`);
     };
 
     return (

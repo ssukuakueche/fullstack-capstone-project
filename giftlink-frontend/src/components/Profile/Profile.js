@@ -65,7 +65,7 @@ const Profile = () => {
       }
 
       const payload = { ...updatedDetails };
-      const response = await axios.put(`${urlConfig.backendUrl}/api/auth/update`, payload, {
+      await axios.put(`${urlConfig.backendUrl}/api/auth/update`, payload, {
         headers: {
           'email': email,
           'Authorization': `Bearer ${authtoken}`
